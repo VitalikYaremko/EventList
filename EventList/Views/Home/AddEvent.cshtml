@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "AddEvent";
+}
+@model EventList.Models.EventModel
+
+<div class="jumbotron" style="margin-top:25px;background-color:deepskyblue" >
+    @using (Html.BeginForm("Event", "Home", FormMethod.Post))
+    {
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p style="margin-bottom:5px">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </p>
+
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p style="margin-bottom:5px">
+                        @Html.LabelFor(m => m.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <p />
+                    @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p style="margin-bottom:5px">
+                        @Html.LabelFor(m => m.Details, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </p>
+                    <textarea cols="25" class="form-control" id="Details" name="Details" rows="5" required></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p style="margin-bottom:5px">
+                        @Html.LabelFor(m => m.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </p>
+                    @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="margin-left:15%">
+                    <button style="width:280px; height:44px " class="btn btn-primary btn-lg" name="action" value="Event">Add Event</button>
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>

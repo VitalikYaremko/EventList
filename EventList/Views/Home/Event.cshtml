@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model EventList.Models.EventModel
+
+<div>
+    @foreach (var e in ViewBag.Events)
+    {
+        <div class="jumbotron" style="margin-top:25px; background-color:deepskyblue">
+            <table style="width:100%" class="row">
+                <tr>
+                    <th>Type: @e.Type</th>
+                    <th style="text-align:right">
+
+                        @if (e.IsViewed == true)
+                        {
+                            <button class="btn btn-primary" style="width:100px">Viewed</button>
+                        }
+                        else
+                        {
+                            
+                            using (Html.BeginForm("IsViewed", "Home", FormMethod.Post))
+                            {
+                                <input type="hidden" id="Id" name="Id" value="@e.Id" />
+                                <input type="hidden" id="Type" name="Type" value="@e.Type" />
+                                <input type="hidden" id="Name" name="Name" value="@e.Name" />
+                                <input type="hidden" id="Details" name="Details" value="@e.Details" />
+                                <input type="hidden" id="CreatedOn" name="CreatedOn" value="@e.CreatedOn" />
+                                <input type="hidden" id="CreatedBy" name="CreatedBy" value="@e.CreatedBy" />
+                                <input type="hidden" id="IsViewed" name="IsViewed" value=true />
+
+                                <button type="submit" class="btn btn-outline-primary" style="width:100px">Not Viewed</button>
+                                }
+
+                            }
+ 
+                    </th>
+                </tr>
+                <tr>
+                    <th>Name: @e.Name</th>
+                </tr>
+
+                <tr>
+                    <td>@e.Details</td>
+                </tr>
+                <tr>
+                    <td style="color:darkblue">
+                        Posted by: @e.CreatedBy    @e.CreatedOn  
+                    </td>
+                    
+                    <td style="text-align:right">
+                        @using (Html.BeginForm("Delete", "Home", FormMethod.Post))
+                        {
+                            <button class="btn btn-primary" style="width:100px">Delete</button>
+                            <input type="hidden" name="Id" value="@e.Id" />
+                        }
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+ 
+</div>
